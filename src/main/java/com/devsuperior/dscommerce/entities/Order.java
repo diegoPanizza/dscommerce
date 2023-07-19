@@ -37,6 +37,9 @@ public class Order implements Serializable {
 	@OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
 	private Payment payment;
 	
+	/*@ManyToMany
+	private List<Product> products = new ArrayList<>();*/
+	
 	public Order() {
 	}
 
