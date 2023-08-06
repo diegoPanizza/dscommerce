@@ -2,27 +2,30 @@ package com.devsuperior.dscommerce.entities;
 
 import java.util.Objects;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "tb_role")
-public class Role {
+public class Role implements GrantedAuthority{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
-	private String authorithy;
+	private String authority;
 	
 	public Role() {
 	}
 
-	public Role(String id, String authorithy) {
+	public Role(String id, String authority) {
 		this.id = id;
-		this.authorithy = authorithy;
+		this.authority = authority;
 	}
 
 	public String getId() {
@@ -33,17 +36,18 @@ public class Role {
 		this.id = id;
 	}
 
-	public String getAuthorithy() {
-		return authorithy;
+	@Override
+	public String getAuthority() {
+		return authority;
 	}
 
-	public void setAuthorithy(String authorithy) {
-		this.authorithy = authorithy;
+	public void setAuthority(String authority) {
+		this.authority = authority;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(authorithy);
+		return Objects.hash(authority);
 	}
 
 	@Override
@@ -55,6 +59,6 @@ public class Role {
 		if (getClass() != obj.getClass())
 			return false;
 		Role other = (Role) obj;
-		return Objects.equals(authorithy, other.authorithy);
-	}	
+		return Objects.equals(authority, other.authority);
+	}
 }
