@@ -17,7 +17,6 @@ import com.devsuperior.dscommerce.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 
 @Service
-
 public class ProductService {
 
 	@Autowired
@@ -31,8 +30,8 @@ public class ProductService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Page<ProductDTO> findAll(Pageable pageable) {
-		Page<Product> productList = repository.findAll(pageable);
+	public Page<ProductDTO> findAll(String name, Pageable pageable) {
+		Page<Product> productList = repository.searchByName(name, pageable);
 		 return productList.map(x -> new ProductDTO(x));
 	}
 	
